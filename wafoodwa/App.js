@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import HomePageScreen from "./HomePageScreen.js";
 import RestaurantScreen from "./RestaurantScreen.js"; 
