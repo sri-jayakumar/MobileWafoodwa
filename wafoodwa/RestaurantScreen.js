@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
 
-export default class App extends React.Component {
-    render() {
+export default function App(props){
     return (
         <View
         style={{
@@ -11,10 +10,9 @@ export default class App extends React.Component {
         }}>
         <Button
           title=" Restaurant Reviews"
-          onPress={() =>
-            this.props.navigation.navigate('Reviews')
+          onPress={() => props.navigation.navigate('Reviews')
           }
         />
       </View>
     )
-}}
+}

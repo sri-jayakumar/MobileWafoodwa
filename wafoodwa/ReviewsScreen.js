@@ -1,9 +1,7 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
-    render() {
+export default function App(props){
     return (
         <View
         style={{
@@ -13,9 +11,9 @@ export default class App extends React.Component {
         <Button
           title="Go back to HomePage"
           onPress={() =>
-            this.props.navigation.navigate('HomePage')
+            props.navigation.navigate('HomePage')
           }
         />
       </View>
     )
-}}
+}

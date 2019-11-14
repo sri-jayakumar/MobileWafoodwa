@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View , ScrollView} from 'react-native';
 
-export default class App extends React.Component {
-    render() {
+export default function App(props) {
     return (
       <View
         style={{
@@ -11,8 +10,15 @@ export default class App extends React.Component {
         }}>
         <Button
           title="Restaurant"
-          onPress={() => this.props.navigation.navigate('Restaurant')}
+          onPress={() => props.navigation.navigate('Restaurant')}
         />
+        <ScrollView>
+        <Text style={{fontSize:96}}>Restaurant</Text>
+        <Text style={{fontSize:96}}>Scroll me plz</Text>
+        <Text style={{fontSize:96}}>Scroll me plz</Text>
+        <Text style={{fontSize:96}}>Scroll me plz</Text>
+        <Text style={{fontSize:96}}>Scroll me plz</Text>
+        </ScrollView> 
       </View>
     )
-}}
+}
