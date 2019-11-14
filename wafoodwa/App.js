@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
+import HomePageScreen from "./HomePageScreen.js";
+import ResturantScreen from "./RestaurantScreen.js"; 
+import ReviewScreen from "./ReviewsScreen"; 
 
 export default class App extends React.Component {
   render() {
@@ -14,16 +17,9 @@ class HomePage extends React.Component {
   };
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <Button
-          title="Resturant"
-          onPress={() => this.props.navigation.navigate('Resturant')}
-        />
-      </View>
+      <HomePageScreen
+      navigation={this.props.navigation}
+      />
     );
   }
 }
@@ -34,18 +30,9 @@ class Resturant extends React.Component {
   };
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <Button
-          title=" Resturant Reviews"
-          onPress={() =>
-            this.props.navigation.navigate('Reviews')
-          }
-        />
-      </View>
+      <ResturantScreen
+      navigation={this.props.navigation}
+      />
     );
   }
 }
@@ -56,18 +43,9 @@ class Reviews extends React.Component {
   };
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <Button
-          title="Go back to HomePage"
-          onPress={() =>
-            this.props.navigation.navigate('HomePage')
-          }
-        />
-      </View>
+      <ReviewScreen
+      navigation={this.props.navigation}
+      />
     );
   }
 }
