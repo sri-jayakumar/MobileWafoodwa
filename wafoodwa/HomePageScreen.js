@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import RestaurantCard from "./RestaurantCard.js"; 
+import Scroll from "./Scroll.js";
  
 const firebaseConfig = {
   apiKey: "AIzaSyB7remzR79LJUBcvJHH0JWfaD1xmzOujOA",
@@ -24,20 +25,29 @@ db = firebase.firestore();
 
 export default function App(props) {
   const [restaurants, setRestaurants] = useState([]);  
-  
+  let allValues = [];
+
   useEffect(() => {
-    let allValues = [];
     db.collection('restaurants').onSnapshot((snapshot) => {
       snapshot.forEach( (val) => {
         let newPush = val.data()
         newPush.id = val.id
         allValues.push(newPush)
 
-        console.log(val.data(), "incoming")
+        console.log(val.get("Name"), "name")
+        console.log(newPush.id, "id")
       })
     console.log(allValues, "recieved"); 
     })
   },[]);
+
+  // Render Every Restaurant
+  function getRestaurant(restaurants){
+    return restaurants.forEach(res => {
+        // console.log(res.name, "name")
+         return res.getElementById("Name")
+      })
+}
 
     return (
       <View
@@ -49,29 +59,21 @@ export default function App(props) {
           title="Restaurant"
           onPress={() => props.navigation.navigate('Restaurant')}
         />
-        <ScrollView>
-        <RestaurantCard
-          name = "Restaurant Name"
-        />
-            {/* <TouchableOpacity
-              onPress={() => props.navigation.navigate('Restaurant')} >
-              <Text
-                style={{
-                  fontFamily: 'Helvetica',
-                  fontSize: 14,
-                  color: '#FF3B3B',
-                }}>
-                Restaurant TouchableOpacity
-              </Text>
-            </TouchableOpacity> */}
+        <ScrollView> 
+          <Text style={{ fontSize: 90 }}> Restaurant </Text>
+          <Text style={{ fontSize: 90 }}> Restaurant </Text>
+          <Text style={{ fontSize: 90 }}> Restaurant </Text>
+          <Text style={{ fontSize: 90 }}> Restaurant </Text>
+          <Text style={{ fontSize: 90 }}> Restaurant </Text>
+          <Text style={{ fontSize: 90 }}> Restaurant </Text>
+          <Text style={{ fontSize: 90 }}> Restaurant </Text>
 
-        {/* <Text style={{fontSize:96}}>Restaurant</Text>
-        <Text style={{fontSize:96}}>Scroll me plz</Text>
-        <Text style={{fontSize:96}}>Scroll me plz</Text>
-        <Text style={{fontSize:96}}>Scroll me plz</Text>
-        <Text style={{fontSize:96}}>Scroll me plz</Text> */}
-        
-        </ScrollView> 
+        </ScrollView>
+        {/* <Scroll
+          navigation={props.navigation}
+          restaurants = {allValues}
+        /> 
+        <Text> {allValues} </Text> */}
       </View>
     )
 }

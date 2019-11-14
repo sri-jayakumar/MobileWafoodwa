@@ -4,9 +4,10 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 export default function RestaurantCard(props) {
 
     return (
-      <View>
-        <Text style={{fontSize:90}}>{props.name} </Text>
-        {/* <View style={styles.topSection}>
+        <View>
+            <Text style={{ fontSize: 90 }}>{props.name} </Text>
+            {/* renderItem={renderItem(props)} */}
+            {/* <View style={styles.topSection}>
         <TouchableOpacity onPress={() => props.navigation.navigate('Details', {
             name: props.name,
             date: formatDate(props.date),
@@ -33,43 +34,42 @@ export default function RestaurantCard(props) {
             </TouchableOpacity>
           </View>
       </View> */}
-    </View>
+        </View>
     );
-  }
-  
-  const styles = StyleSheet.create({
+}
+
+const styles = StyleSheet.create({
     container: {
-      justifyContent: 'center',
-      backgroundColor: '#FFFFFF',
-      width: 315,
-      height: 133,
-      shadowColor: 'grey',
-      shadowOffset: {
-        width: 0,
-        height: 5,
-      },
-      shadowOpacity: 0.36,
-      shadowRadius: 6.68,
-      elevation: 11,
+        justifyContent: 'center',
+        backgroundColor: '#FFFFFF',
+        width: 315,
+        height: 133,
+        shadowColor: 'grey',
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+        elevation: 11,
     },
     profileImage: {
-      width: 50,
-      height: 50,
-      margin: 10,
+        width: 50,
+        height: 50,
+        margin: 10,
     },
     topSection: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      width: '100%',
-      height: 50,
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        width: '100%',
+        height: 50,
     },
     buttonStyle: {
-      width: '50%',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
+        width: '50%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-  });
-  
+});
