@@ -18,14 +18,13 @@ export default function Scroll(props) {
   }
 return (
     <View style={styles.container}>
-      <ScrollView renderItem={renderItem}> 
-      <Text style={{ fontSize: 90 }}>{props.data} </Text>
+      <ScrollView 
+        renderItem={renderItem}
+        navigation={props.navigation}
+        // data={props.data}
+      > 
+      {/* <Text style={{ fontSize: 90 }}>{props.data} </Text> */}
       </ScrollView>
-      
-        {/* // data={props.restaurants}
-        // renderItem={renderItem}
-        /> */}
-        
     </View>
   );
 }

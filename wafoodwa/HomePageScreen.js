@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Text, View , ScrollView, TouchableOpacity} from 'react-native';
-import Scroll from "./Scroll.js"
+import Scroll from "./Scroll.js";
+import RestaurantCard from './RestaurantCard';
 
 export default function App(props) {
 
@@ -14,11 +15,12 @@ export default function App(props) {
           title="Restaurant"
           onPress={() => props.navigation.navigate('Restaurant')}
         />
+        <RestaurantCard> 
+        </RestaurantCard>
         <Scroll 
-        navigation={props.navigation}
-        data = {props.data}>
+          navigation={props.navigation}
+          data = {props.data}>
         </Scroll>
-        <Text> {props.data} </Text>
       </View>
     )
 }
