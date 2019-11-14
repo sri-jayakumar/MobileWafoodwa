@@ -10,8 +10,7 @@ export default function App(props){
         }}>
         <Button
           title="Go back to HomePage"
-          onPress={() =>
-            props.navigation.navigate('HomePage')
+          onPress={() => props.navigation.navigate('HomePage')
           }
         />
       </View>
