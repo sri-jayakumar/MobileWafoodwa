@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import HomePageScreen from "./HomePageScreen.js";
-import ResturantScreen from "./RestaurantScreen.js"; 
+import RestaurantScreen from "./RestaurantScreen.js"; 
 import ReviewScreen from "./ReviewsScreen"; 
 
 export default class App extends React.Component {
@@ -13,7 +13,14 @@ export default class App extends React.Component {
 
 class HomePage extends React.Component {
   static navigationOptions = {
-    headerTitle: 'WaFoodWa',
+    title: 'WaFoodWa',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
   render() {
     return (
@@ -24,13 +31,20 @@ class HomePage extends React.Component {
   }
 }
 
-class Resturant extends React.Component {
+class Restaurant extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Resturant',
+    title: 'Restaurant',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
   render() {
     return (
-      <ResturantScreen
+      <RestaurantScreen
       navigation={this.props.navigation}
       />
     );
@@ -39,7 +53,14 @@ class Resturant extends React.Component {
 
 class Reviews extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Reviews',
+    title: 'Reviews',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
   render() {
     return (
@@ -53,7 +74,19 @@ class Reviews extends React.Component {
 const MyNavigator = createStackNavigator(
   {
     HomePage: HomePage,
-    Resturant: Resturant,
+    Restaurant: Restaurant,
     Reviews: Reviews,
   },
 );
+
+const styles = {
+  header:{
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  },
+};

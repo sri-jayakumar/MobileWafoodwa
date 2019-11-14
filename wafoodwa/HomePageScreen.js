@@ -10,8 +10,8 @@ export default class App extends React.Component {
           justifyContent: 'center',
         }}>
         <Button
-          title="Resturant"
-          onPress={() => this.props.navigation.navigate('Resturant')}
+          title="Restaurant"
+          onPress={() => this.props.navigation.navigate('Restaurant')}
         />
       </View>
     )
