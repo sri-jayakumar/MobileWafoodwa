@@ -21,7 +21,10 @@ export default function HomePageScreen(props) {
                                     navigation={props.navigation}
                                     longitude={item['restaurant'].location.longitude}
                                     latitude={item['restaurant'].location.latitude}
-                                    image={item['restaurant']['featured_image']}/>
+                                    image={item['restaurant']['featured_image']}
+                                    hours={item['restaurant']['timings']}
+                                    phone={item['restaurant']['phone_numbers']}
+                                    avgCost={item['restaurant']['average_cost_for_two']}/>
                       }
           keyExtractor={item => item['restaurant'].id}
         />

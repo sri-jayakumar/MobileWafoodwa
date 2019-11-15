@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet, Image } from 'react-native';
+import { Button, Text, View, StyleSheet, Image, ScrollView, Dimensions, Linking } from 'react-native';
+import { Rating } from 'react-native-elements';
+
 import RestaurantMap from './RestaurantMap';
 
 export default class App extends React.Component{
@@ -12,9 +14,8 @@ export default class App extends React.Component{
     }
   }
   static navigationOptions = ({navigation}) => {
-    let name = navigation.getParam('name')
     return {
-      title: name,
+      title: 'Details',
       headerStyle: {
         backgroundColor: '#de5a0d',
       },
@@ -25,32 +26,70 @@ export default class App extends React.Component{
     } 
   };
   render(){
-    console.log(this.state.longitude)
+    let hoursArr = this.state.hours.split(',')
+    let hoursArrText = hoursArr.map((value, index) => <Text key={index}>{"\n"+value}</Text>)
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={{    alignItems: 'center',
+        justifyContent: 'center',}}>
           <Text style={styles.paragraph}>
             {this.state.name}
           </Text>
-          <Image style={styles.logo} source={{uri: "https://cdn.bestday.net/_lib/vimages/San-Miguel-de-Allende/Hotels/Hotel-Aqui-es-Mexico/Fachada_g.jpg"}} />
-          <Button
-            title=" Restaurant Reviews"
-            onPress={() => this.props.navigation.navigate('Reviews')
-            }
+          <Image style={styles.logo} source={{uri: this.state.image}} />
+          <Rating
+              type="custom"
+              fractions={1}
+              showRating
+              imageSize={30}
+              startingValue={parseFloat(this.state.rating)}
+              readonly
+              tintColor='#e8e8e8'
+              
           />
+          <View style={styles.body}>
+            <Text style={styles.title}>
+              Address: 
+              <Text style={styles.address}>
+                {" "+this.state.address}
+              </Text>
+            </Text>
+            <Text style={styles.title}>
+              Hours: 
+              <Text style={styles.address}> 
+                {hoursArrText}
+              </Text>
+            </Text>
+            <Text style={styles.title}>
+              Phone: 
+              <Text style={styles.address} onPress={() => Linking.openURL(`tel:${this.state.phone}`)}> 
+                {" " + this.state.phone}
+              </Text>
+            </Text>
+            <Text style={styles.title}>
+              Average Cost for 2: 
+              <Text style={styles.address}> 
+                {" $ " + this.state.avgCost}
+              </Text>
+            </Text>
+            <Button
+              title="Restaurant Reviews"
+              onPress={() => this.props.navigation.navigate('Reviews')
+              }
+            />
+          </View>
           <RestaurantMap name={this.state.name} longitude={parseFloat(this.state.longitude)} latitude={parseFloat(this.state.latitude)}/>
-        </View>
+        </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: 10,
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width
   },
   paragraph: {
-    margin: 24,
+    margin: 14,
     marginTop: 0,
     fontSize: 36,
     fontWeight: 'bold',
@@ -59,5 +98,17 @@ const styles = StyleSheet.create({
   logo: {
     height: 128,
     width: "100%",
+  },
+  body: {
+    alignItems: 'flex-start',
+    width: "100%"
+  },
+  address: {
+    fontWeight: '200',
+    fontSize: 20
+  }, 
+  title: {
+    fontWeight: 'bold',
+    fontSize: 20
   }
 });

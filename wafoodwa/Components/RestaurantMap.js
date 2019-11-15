@@ -1,6 +1,6 @@
 import React from 'react';
 import MapView, {Marker, Polyline} from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from 'react-native';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
@@ -15,7 +15,7 @@ export default class RestaurantMap extends React.Component {
       longAndLat: null,
       longAndLatArray: [],
     };
-    this.handleMapRegionChange = this.handleMapRegionChange.bind(this)
+    // this.handleMapRegionChange = this.handleMapRegionChange.bind(this)
     this.getLocationAsync = this.getLocationAsync.bind(this)
   }
 
@@ -23,7 +23,7 @@ export default class RestaurantMap extends React.Component {
     this.getLocationAsync();
   }
 
-  handleMapRegionChange (mapRegion){
+  handleMapRegionChange (mapRegion) {
     this.setState({ mapRegion });
   }
 
@@ -50,31 +50,31 @@ export default class RestaurantMap extends React.Component {
       <View>
       {
         this.state.locationResult === null ?
-          <Text>Finding your current location...</Text> :
-          this.state.hasLocationPermissions === false ?
-            <Text>Location permissions are not granted.</Text> :
-            this.state.mapRegion === null ? 
-            <Text>Map region doesn't exist.</Text> :
-            <MapView
-              style={styles.mapStyle}
-              region={this.state.mapRegion}
-              onRegionChange={this.handleMapRegionChange}
-              coordinate={this.state.mapRegion}
-            > 
-              <Marker
-                coordinate={this.state.longAndLat}
-                title={"Current Location"}
-              />
-              <Marker
-                coordinate={{longitude: this.props.longitude, latitude: this.props.latitude}}
-                title={this.props.name}
-              />
-              <Polyline
-                coordinates={this.state.longAndLatArray}
-                strokeWidth={4}
-                strokeColor={"rgba(49, 165, 214, 1)"}
-              /> 
-            </MapView>
+            <ActivityIndicator size="large" color="#0000ff" /> :
+            this.state.hasLocationPermissions === false ?
+                <Text>Location permissions are not granted.</Text> :
+                this.state.mapRegion === null ? 
+                    <Text>Map region doesn't exist.</Text> :
+                    <MapView
+                    style={styles.mapStyle}
+                    region={this.state.mapRegion}
+                    onRegionChangeComplete={this.handleMapRegionChange.bind(this)}
+                    coordinate={this.state.mapRegion}
+                    > 
+                    <Marker
+                        coordinate={this.state.longAndLat}
+                        title={"Current Location"}
+                    />
+                    <Marker
+                        coordinate={{longitude: this.props.longitude, latitude: this.props.latitude}}
+                        title={this.props.name}
+                    />
+                    <Polyline
+                        coordinates={this.state.longAndLatArray}
+                        strokeWidth={4}
+                        strokeColor={"rgba(49, 165, 214, 1)"}
+                    /> 
+                    </MapView>
       } 
       </View>
     );
@@ -83,8 +83,6 @@ export default class RestaurantMap extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

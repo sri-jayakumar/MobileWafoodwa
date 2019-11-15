@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Rating } from 'react-native-elements';
 
 export default function RestaurantCard(props) {
     let image = props.image ? props.image : "https://media.otstatic.com/img/default-rest-img-36de8e53babb0388be282879433c3313.png"
@@ -14,13 +15,18 @@ export default function RestaurantCard(props) {
                         color: props.color,
                         longitude: props.longitude,
                         latitude: props.latitude,
+                        rating: props.rating,
+                        address: props.location,
+                        hours: props.hours,
+                        phone: props.phone,
+                        avgCost: props.avgCost,
                     })}>
                         <Image
                             style={styles.profileImage} 
                             source={{uri: image}}
                         />
                     </TouchableOpacity>
-                    <View style={{flexShrink: 1}}>
+                    <View style={{flexShrink: 1, justifyContent: 'flex-start'}}>
                         <TouchableOpacity onPress={() => props.navigation.navigate('Restaurant', {
                             name: props.name,
                             image: image, 
@@ -28,10 +34,19 @@ export default function RestaurantCard(props) {
                             color: props.color,
                             longitude: props.longitude,
                             latitude: props.latitude,
+                            rating: props.rating,
+                            address: props.location,
+                            hours: props.hours,
+                            phone: props.phone,
+                            avgCost: props.avgCost,
                         })}>
                             <Text style={styles.title}>{props.name}</Text>
                             <Text style={{flexShrink: 1}}>{props.location}</Text>
-                            <Text style={{flexShrink: 1}}>{props.rating}/5</Text>
+                            <Rating
+                                imageSize={20}
+                                startingValue={parseFloat(props.rating)}
+                                readonly
+                            />
                         </TouchableOpacity>
                     </View>
                 </View>
