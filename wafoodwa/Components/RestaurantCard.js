@@ -2,30 +2,36 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 export default function RestaurantCard(props) {
-    let picurl = "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/slideshows/extreme_eats_worst_meals_in_restaurant_slideshow/650x350_extreme_eats_worst_meals_in_restaurant_slideshow.jpg"; 
+    let image = props.image ? props.image : "https://media.otstatic.com/img/default-rest-img-36de8e53babb0388be282879433c3313.png"
     return (
         <View>
             <View style={styles.container}>
                 <View style={styles.topSection}>
                     <TouchableOpacity onPress={() => props.navigation.navigate('Restaurant', {
                         name: props.name,
-                        picture: picurl, 
+                        image: image, 
                         id: props.id,
+                        color: props.color,
+                        longitude: props.longitude,
+                        latitude: props.latitude,
                     })}>
                         <Image
-                            style={styles.profileImage}
-                            source={{ uri: picurl}}
+                            style={styles.profileImage} 
+                            source={{uri: image}}
                         />
                     </TouchableOpacity>
-                    <View style={styles.textSection}>
+                    <View style={{flexShrink: 1}}>
                         <TouchableOpacity onPress={() => props.navigation.navigate('Restaurant', {
                             name: props.name,
-                            picture: picurl, 
+                            image: image, 
                             id: props.id,
+                            color: props.color,
+                            longitude: props.longitude,
+                            latitude: props.latitude,
                         })}>
-                            <Text>Restuarant Name</Text>
-                            <Text>Restuarant Location</Text>
-                            <Text>Restuarant Rating</Text>
+                            <Text style={styles.title}>{props.name}</Text>
+                            <Text style={{flexShrink: 1}}>{props.location}</Text>
+                            <Text style={{flexShrink: 1}}>{props.rating}/5</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -38,7 +44,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         backgroundColor: '#FFFFFF',
-        width: '100%',
+        width: '95%',
         height: 150,
         shadowColor: 'grey',
         shadowOffset: {
@@ -48,6 +54,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.36,
         shadowRadius: 6.68,
         elevation: 11,
+        margin: 10,
     },
     profileImage: {
         width: 140,
@@ -68,4 +75,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    title: {
+        flexShrink: 1,
+        fontWeight: "bold",
+        fontSize: 20
+    }
 });
