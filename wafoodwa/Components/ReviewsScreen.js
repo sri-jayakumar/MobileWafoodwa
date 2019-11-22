@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
+import CameraPage from "./CameraPage.js"
 
 export default class ReviewsScreen extends React.Component{
   static navigationOptions = {
@@ -24,6 +25,9 @@ export default class ReviewsScreen extends React.Component{
           onPress={() => this.props.navigation.navigate('HomePage')
           }
         />
+        <CameraPage>
+
+        </CameraPage>
       </View>
     )
   }
