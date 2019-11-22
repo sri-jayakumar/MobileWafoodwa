@@ -60,10 +60,9 @@ async snapPhoto() {
                 backgroundColor: 'transparent',
                 flexDirection: 'row',
               }}>
-              {/* <TouchableOpacity style={styles.captureButton} onPress={this.snapPhoto.bind(this)}>
-                <Image style={{width: 100, height: 100}} source={require('../assets/capture.png')}          
-                />
-            </TouchableOpacity> */}
+               <TouchableOpacity onPress={this.snapPhoto.bind(this)}>
+                <Text style={{ fontSize: 18, marginBottom: 50, color: 'white' ,justifyContent: 'center'}}> Click </Text>
+            </TouchableOpacity>
               {/* <TouchableOpacity
                 style={{
                   flex: 0.1,
