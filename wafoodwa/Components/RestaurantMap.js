@@ -1,8 +1,10 @@
 import React from 'react';
 import MapView, {Marker, Polyline} from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ActivityIndicator, TouchableOpacity } from 'react-native';
+import getDirections from 'react-native-google-maps-directions';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import { Button } from 'react-native-paper';
 
 
 export default class RestaurantMap extends React.Component {
@@ -45,9 +47,28 @@ export default class RestaurantMap extends React.Component {
     this.setState({mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}); 
   }
 
+  handleGetDirections = () => {
+    const data = {
+      source: this.state.longAndLatArray[0],
+      destination: this.state.longAndLatArray[1],
+      params: [
+        {
+          key: "travelmode",
+          value: "driving"        // may be "walking", "bicycling" or "transit" as well
+        },
+        {
+          key: "dir_action",
+          value: "navigate"       // this instantly initializes navigation using the given travel mode
+        }
+      ],
+    }
+
+    getDirections(data)
+  }
+
   render() {
     return (
-      <View>
+      <View style={{padding: 10}}>
       {
         this.state.locationResult === null ?
             <ActivityIndicator size="large" color="#0000ff" /> :
@@ -55,26 +76,33 @@ export default class RestaurantMap extends React.Component {
                 <Text>Location permissions are not granted.</Text> :
                 this.state.mapRegion === null ? 
                     <Text>Map region doesn't exist.</Text> :
-                    <MapView
-                    style={styles.mapStyle}
-                    region={this.state.mapRegion}
-                    onRegionChangeComplete={this.handleMapRegionChange.bind(this)}
-                    coordinate={this.state.mapRegion}
-                    > 
-                    <Marker
-                        coordinate={this.state.longAndLat}
-                        title={"Current Location"}
-                    />
-                    <Marker
-                        coordinate={{longitude: this.props.longitude, latitude: this.props.latitude}}
-                        title={this.props.name}
-                    />
-                    <Polyline
-                        coordinates={this.state.longAndLatArray}
-                        strokeWidth={4}
-                        strokeColor={"rgba(49, 165, 214, 1)"}
-                    /> 
-                    </MapView>
+                    <View>
+                      <TouchableOpacity 
+                        onPress={this.handleGetDirections} 
+                      >
+                        <Text style={styles.directions}>GET DIRECTIONS</Text>
+                      </TouchableOpacity>
+                      <MapView
+                      style={styles.mapStyle}
+                      region={this.state.mapRegion}
+                      onRegionChangeComplete={this.handleMapRegionChange.bind(this)}
+                      coordinate={this.state.mapRegion}
+                      > 
+                        <Marker
+                            coordinate={this.state.longAndLat}
+                            title={"Current Location"}
+                        />
+                        <Marker
+                            coordinate={{longitude: this.props.longitude, latitude: this.props.latitude}}
+                            title={this.props.name}
+                        />
+                        <Polyline
+                            coordinates={this.state.longAndLatArray}
+                            strokeWidth={4}
+                            strokeColor={"rgba(49, 165, 214, 1)"}
+                        /> 
+                      </MapView>
+                    </View>
       } 
       </View>
     );
@@ -90,4 +118,9 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height*0.5,
   },
+  directions: {
+    fontWeight: '200',
+    fontSize: 20,
+    color: '#007AFF'
+  }
 });

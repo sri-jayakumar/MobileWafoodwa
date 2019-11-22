@@ -11,7 +11,7 @@ export default function HomePageScreen(props) {
         }}>
         <FlatList
           data={props.allValues}
-          renderItem={({item})=><RestaurantCard 
+          renderItem={({item, index})=><RestaurantCard 
                                     key={item['restaurant'].id} 
                                     id={item['restaurant'].id} 
                                     name={item['restaurant'].name} 
@@ -24,7 +24,8 @@ export default function HomePageScreen(props) {
                                     image={item['restaurant']['featured_image']}
                                     hours={item['restaurant']['timings']}
                                     phone={item['restaurant']['phone_numbers']}
-                                    avgCost={item['restaurant']['average_cost_for_two']}/>
+                                    avgCost={item['restaurant']['average_cost_for_two']}
+                                    index={index}/>
                       }
           keyExtractor={item => item['restaurant'].id}
         />

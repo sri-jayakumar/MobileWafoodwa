@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Rating } from 'react-native-elements';
 
 export default function RestaurantCard(props) {
@@ -20,6 +20,8 @@ export default function RestaurantCard(props) {
                         hours: props.hours,
                         phone: props.phone,
                         avgCost: props.avgCost,
+                        index: props.index,
+                        reviews: props.reviews,
                     })}>
                         <Image
                             style={styles.profileImage} 
@@ -34,11 +36,13 @@ export default function RestaurantCard(props) {
                             color: props.color,
                             longitude: props.longitude,
                             latitude: props.latitude,
-                            rating: props.rating,
+                            rating: props.rating, 
                             address: props.location,
                             hours: props.hours,
                             phone: props.phone,
                             avgCost: props.avgCost,
+                            index: props.index,
+                            reviews: props.reviews,
                         })}>
                             <Text style={styles.title}>{props.name}</Text>
                             <Text style={{flexShrink: 1}}>{props.location}</Text>

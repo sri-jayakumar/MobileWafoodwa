@@ -60,7 +60,7 @@ export default class App extends React.Component{
             </Text>
             <Text style={styles.title}>
               Phone: 
-              <Text style={styles.address} onPress={() => Linking.openURL(`tel:${this.state.phone}`)}> 
+              <Text style={styles.phone} onPress={() => Linking.openURL(`tel:${this.state.phone}`)}> 
                 {" " + this.state.phone}
               </Text>
             </Text>
@@ -72,8 +72,9 @@ export default class App extends React.Component{
             </Text>
             <Button
               title="Restaurant Reviews"
-              onPress={() => this.props.navigation.navigate('Reviews')
-              }
+              onPress={() => this.props.navigation.navigate('Reviews', {
+                index: this.state.index,
+              })}
             />
           </View>
           <RestaurantMap name={this.state.name} longitude={parseFloat(this.state.longitude)} latitude={parseFloat(this.state.latitude)}/>
@@ -106,6 +107,11 @@ const styles = StyleSheet.create({
   address: {
     fontWeight: '200',
     fontSize: 20
+  }, 
+  phone: {
+    fontWeight: '200',
+    fontSize: 20,
+    color: 'blue'
   }, 
   title: {
     fontWeight: 'bold',
