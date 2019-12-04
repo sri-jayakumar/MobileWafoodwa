@@ -76,6 +76,12 @@ export default class App extends React.Component{
                 index: this.state.index,
               })}
             />
+            <Button
+              title="Restaurant Photos"
+              onPress={() => this.props.navigation.navigate('ReviewWithPhotoScreen', {
+                index: this.state.index,
+              })}
+            />
           </View>
           <RestaurantMap name={this.state.name} longitude={parseFloat(this.state.longitude)} latitude={parseFloat(this.state.latitude)}/>
         </ScrollView>

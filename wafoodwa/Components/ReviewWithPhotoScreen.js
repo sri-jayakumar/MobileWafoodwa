@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Text, View, Image } from 'react-native';
+import { Button, Text, View, Image, FlatList } from 'react-native';
+import firebase from 'firebase';
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyB7remzR79LJUBcvJHH0JWfaD1xmzOujOA",
@@ -15,7 +17,7 @@ export default class ReviewWithPhotoScreen extends React.Component{
     constructor(props){
       super(props)
       var params = this.props.navigation.state.params
-      console.log(params)
+      // console.log(params)
       this.state = {
         ...params
       }
@@ -31,6 +33,13 @@ export default class ReviewWithPhotoScreen extends React.Component{
       fontWeight: 'bold',
     },
   };
+
+  componentWillMount() {
+    console.log(this.state.index)
+    firebase.database().ref(`restaurants/restaurants/${this.state.index}/restaurant/photos`).on('value', (snapshot) => {
+      this.setState({photos: snapshot.val() ? snapshot.val() : {}})
+    })
+  }
   render(){
     return (
         <View
@@ -38,12 +47,16 @@ export default class ReviewWithPhotoScreen extends React.Component{
           flex: 1,
           justifyContent: 'center',
         }}>
-        {/* <Text> image: {JSON.stringify(this.state.photoUri)} </Text>  */}
-        {/* <Image source={{uri: this.state.image}} /> */}
-        <Image
-            style={{ height: 170, width: 200, alignSelf: "center" }}
-            source={{ uri: this.props.navigation.state.params.photoUri }}
-            resizeMode="contain"
+        <FlatList
+              data={Object.values(this.state.photos)}
+              renderItem={({item, index}) => <Image
+                                                key={index}
+                                                style={{ height: 170, width: 200, alignSelf: "center" }}
+                                                source={{ uri: 'data:image/png;base64,'+item['photo'] }}
+                                                resizeMode="contain"
+                                              />
+              }
+              keyExtractor={(item, index) => index.toString()}
         />
       </View>
     )

@@ -51,9 +51,9 @@ export default class UseCamera extends React.Component {
         exif: true
       };
       await this.camera.takePictureAsync(options).then(photo => {
-        this.writePhoto(photo.uri)
+        this.writePhoto(photo.base64)
         photo.exif.Orientation = 1;
-        this.props.navigation.navigate("ReviewWithPhotoScreen", { photoUri: photo.uri })
+        this.props.navigation.navigate("ReviewWithPhotoScreen", { photoUri: photo.uri, photo64: photo.base64, index: this.props.index })
       });
     }
   }
