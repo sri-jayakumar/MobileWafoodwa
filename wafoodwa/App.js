@@ -4,6 +4,7 @@ import HomePageScreen from "./Components/HomePageScreen";
 import RestaurantScreen from "./Components/RestaurantScreen";
 import ReviewScreen from "./Components/ReviewsScreen";
 import CameraPage from "./Components/CameraPage";
+import ReviewWithPhotoScreen from "./Components/ReviewWithPhotoScreen";
 import {Text } from 'react-native';
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -72,6 +73,7 @@ const MyNavigator = createStackNavigator(
     Restaurant: RestaurantScreen,
     Reviews: ReviewScreen,
     Camera: CameraPage, 
+    ReviewWithPhotoScreen: ReviewWithPhotoScreen,
   },
 );
 

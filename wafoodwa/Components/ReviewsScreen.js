@@ -68,8 +68,8 @@ export default class ReviewsScreen extends React.Component{
           onChangeText={text => this.setState({input: text, ready: true})}
           value={this.state.input}
         />
-        <TouchableOpacity onPress={this.props.navigation.navigate('Camera')}>
-        <Entypo name="camera" size={32} color="black" />
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera', {index: this.state.index})}>
+          <Entypo name="camera" size={32} color="black" />
         </TouchableOpacity>
         </View>
         <Button 
