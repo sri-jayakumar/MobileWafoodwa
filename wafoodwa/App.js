@@ -3,8 +3,8 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomePageScreen from "./Components/HomePageScreen";
 import RestaurantScreen from "./Components/RestaurantScreen";
 import ReviewScreen from "./Components/ReviewsScreen";
-import { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import CameraPage from "./Components/CameraPage";
+import {Text } from 'react-native';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -71,6 +71,7 @@ const MyNavigator = createStackNavigator(
     HomePage: HomePage,
     Restaurant: RestaurantScreen,
     Reviews: ReviewScreen,
+    Camera: CameraPage, 
   },
 );
 

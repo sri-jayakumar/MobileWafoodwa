@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet, FlatList } from 'react-native';
+import { Button, Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import firebase from 'firebase';
 import { TextInput } from 'react-native-paper';
 import { Card, ListItem } from 'react-native-elements';
 import Constants from 'expo-constants';
+import { Entypo } from '@expo/vector-icons';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB7remzR79LJUBcvJHH0JWfaD1xmzOujOA",
@@ -59,16 +60,23 @@ export default class ReviewsScreen extends React.Component{
   render(){
     return (
       <View style={styles.container}>
+        <View style = {{flexDirection : "row", justifyContent: "space-around", alignItems: "center"}}>
         <TextInput
+         style = {{width: 360}}
           mode='outlined'
           label='Write a review'
           onChangeText={text => this.setState({input: text, ready: true})}
           value={this.state.input}
         />
+        <TouchableOpacity onPress={this.props.navigation.navigate('Camera')}>
+        <Entypo name="camera" size={32} color="black" />
+        </TouchableOpacity>
+        </View>
         <Button 
           title="Submit Review"
           onPress={() => this.writeReview()}
         />
+  
         <Card title='CUSTOMER REVIEWS' containerStyle={{height: '80%'}} wrapperStyle={{height: '100%'}}>
           {
             <FlatList
