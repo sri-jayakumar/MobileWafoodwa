@@ -47,7 +47,7 @@ export default class UseCamera extends React.Component {
     if (this.camera) {
       console.log('Taking photo');
       const options = {
-        quality: 1, base64: true, fixOrientation: true,
+        quality: 0.01 , base64: true, fixOrientation: true,
         exif: true
       };
       await this.camera.takePictureAsync(options).then(photo => {
