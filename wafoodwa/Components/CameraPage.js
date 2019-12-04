@@ -11,6 +11,17 @@ export default class App extends React.Component{
       ...params
     }
   }
+  static navigationOptions = {
+    title: 'Reviews',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
+
   render(){
     return (
         <View>

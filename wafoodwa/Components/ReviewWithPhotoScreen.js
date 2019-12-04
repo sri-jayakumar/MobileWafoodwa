@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View, Image } from 'react-native';
 
 const firebaseConfig = {
     apiKey: "AIzaSyB7remzR79LJUBcvJHH0JWfaD1xmzOujOA",
@@ -22,7 +22,7 @@ export default class ReviewWithPhotoScreen extends React.Component{
     }
   
   static navigationOptions = {
-    title: 'Reviews',
+    title: 'Camera',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -38,18 +38,13 @@ export default class ReviewWithPhotoScreen extends React.Component{
           flex: 1,
           justifyContent: 'center',
         }}>
-        <Button
-          title="Go back to HomePage"
-          onPress={() => this.props.navigation.navigate('HomePage')
-          }
-        />
-        {/* <Text> image: {JSON.stringify(this.state.photoUri)} </Text> */}
-        {/* <Image style={styles.logo} source={{uri: this.state.image}} /> */}
-        {/* <Image
+        {/* <Text> image: {JSON.stringify(this.state.photoUri)} </Text>  */}
+        {/* <Image source={{uri: this.state.image}} /> */}
+        <Image
             style={{ height: 170, width: 200, alignSelf: "center" }}
             source={{ uri: this.props.navigation.state.params.photoUri }}
             resizeMode="contain"
-        /> */}
+        />
       </View>
     )
   }
