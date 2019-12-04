@@ -14,7 +14,6 @@ export default class App extends React.Component{
   render(){
     return (
         <View>
-            <Text>Reached</Text>
             <UseCamera navigation={this.props.navigation} index={this.state.index}/>
         </View>
     )

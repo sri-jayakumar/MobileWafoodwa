@@ -3,8 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet, Dimensions } from 'react-nati
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
 import firebase from 'firebase';
-
-// import {Camera} from 'expo';
+import { Entypo } from '@expo/vector-icons';
 
 const { width: winWidth, height: winHeight } = Dimensions.get('window');
 
@@ -20,9 +19,9 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-} 
+}
 
-export default class UseCamera extends React.Component{
+export default class UseCamera extends React.Component {
   // constructor(props){
   //   super(props)
   //   var params = this.props.navigation.state.params
@@ -43,18 +42,20 @@ export default class UseCamera extends React.Component{
     this.setState({ hasCameraPermission: status === 'granted' });
   }
 
-async snapPhoto() {       
-  console.log('Button Pressed');
-  if (this.camera) {
-     console.log('Taking photo');
-     const options = { quality: 1, base64: true, fixOrientation: true, 
-     exif: true};
-     await this.camera.takePictureAsync(options).then(photo => {
+  async snapPhoto() {
+    console.log('Button Pressed');
+    if (this.camera) {
+      console.log('Taking photo');
+      const options = {
+        quality: 1, base64: true, fixOrientation: true,
+        exif: true
+      };
+      await this.camera.takePictureAsync(options).then(photo => {
         this.writePhoto(photo.uri)
-        photo.exif.Orientation = 1;           
-        this.props.navigation.navigate("ReviewWithPhotoScreen", { photoUri: photo.uri })         
-        });     
-   }
+        photo.exif.Orientation = 1;
+        this.props.navigation.navigate("ReviewWithPhotoScreen", { photoUri: photo.uri })
+      });
+    }
   }
 
   writePhoto = (photo) => {
@@ -75,38 +76,40 @@ async snapPhoto() {
     //       <Text>No access to camera</Text>
     //       <Camera style={{ flex: 1 }} type={this.state.type} 
     //       ref={camera => {this.camera = camera; }}>
-            
+
     //       </Camera>
     //     </View>
     //   );
     // }
     const { hasCameraPermission } = this.state;
 
-        if (hasCameraPermission === null) {
-            return <View />;
-        } else if (hasCameraPermission === false) {
-            return <Text>Access to camera has been denied.</Text>;
-        }
+    if (hasCameraPermission === null) {
+      return <View />;
+    } else if (hasCameraPermission === false) {
+      return <Text>Access to camera has been denied.</Text>;
+    }
 
-        return (
-            <View>
-                <Camera
-                    style={styles.preview}
-                    ref={camera => this.camera = camera}
-                >
-                  <View
-              style={{
-                flex: 1,
-                backgroundColor: 'transparent',
-                flexDirection: 'row',
-              }}>
-               <TouchableOpacity onPress={this.snapPhoto.bind(this)}>
-                <Text style={{ fontSize: 18, marginBottom: 50, color: 'white' ,justifyContent: 'center'}}> Click </Text>
+    return (
+      <View>
+        <Camera
+          style={styles.preview}
+          ref={camera => this.camera = camera}
+        >
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'transparent',
+              flexDirection: 'column-reverse',
+              alignSelf: "center", 
+              paddingBottom: 150, 
+            }}>
+            <TouchableOpacity onPress={this.snapPhoto.bind(this)}>
+              <Entypo name="circle" size={75} color='#de5a0d' />
             </TouchableOpacity>
-            </View>
-                </Camera>
-            </View>
-        );
+          </View>
+        </Camera>
+      </View>
+    );
   }
 }
 
@@ -119,5 +122,5 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     bottom: 0,
-},
+  },
 })
