@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Text, View, Image, FlatList } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 import firebase from 'firebase';
 
 
@@ -24,7 +25,7 @@ export default class ReviewWithPhotoScreen extends React.Component{
     }
   
   static navigationOptions = {
-    title: 'Camera',
+    title: 'Photos',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -45,18 +46,21 @@ export default class ReviewWithPhotoScreen extends React.Component{
         <View
         style={{
           flex: 1,
-          justifyContent: 'center',
+          justifyContent: "center"
         }}>
-        <FlatList
+        <Carousel
               data={Object.values(this.state.photos)}
               renderItem={({item, index}) => <Image
                                                 key={index}
-                                                style={{ height: 170, width: 200, alignSelf: "center" }}
+                                                style={{ height: 500, width: 500, alignSelf: "center" }}
                                                 source={{ uri: 'data:image/png;base64,'+item['photo'] }}
                                                 resizeMode="contain"
                                               />
               }
               keyExtractor={(item, index) => index.toString()}
+              sliderHeight={500}
+              sliderWidth={500}
+              itemWidth={500 * 0.8}
         />
       </View>
     )
