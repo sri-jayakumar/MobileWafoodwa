@@ -3,6 +3,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomePageScreen from "./Components/HomePageScreen";
 import RestaurantScreen from "./Components/RestaurantScreen";
 import ReviewScreen from "./Components/ReviewsScreen";
+import ReviewWithPhotoScreen from "./Components/ReviewWithPhotoScreen";
 import { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import firebase from 'firebase';
@@ -71,6 +72,7 @@ const MyNavigator = createStackNavigator(
     HomePage: HomePage,
     Restaurant: RestaurantScreen,
     Reviews: ReviewScreen,
+    ReviewWithPhoto: ReviewWithPhotoScreen
   },
 );
 

@@ -3,6 +3,15 @@ import { Button, Text, View } from 'react-native';
 import CameraPage from "./CameraPage.js"
 
 export default class ReviewsScreen extends React.Component{
+  constructor(props){
+    super(props)
+    var params = this.props.navigation.state.params
+    console.log(params)
+    this.state = {
+      ...params
+    }
+  }
+  
   static navigationOptions = {
     title: 'Reviews',
     headerStyle: {
