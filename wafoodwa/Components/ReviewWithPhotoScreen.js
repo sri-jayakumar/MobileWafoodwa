@@ -46,13 +46,14 @@ export default class ReviewWithPhotoScreen extends React.Component{
         <View
         style={{
           flex: 1,
-          justifyContent: "center"
+          justifyContent: "center",
+          alignItems: "center"
         }}>
         <Carousel
               data={Object.values(this.state.photos)}
               renderItem={({item, index}) => <Image
                                                 key={index}
-                                                style={{ height: 500, width: 500, alignSelf: "center" }}
+                                                style={{ height: 500, width: 500}}
                                                 source={{ uri: 'data:image/png;base64,'+item['photo'] }}
                                                 resizeMode="contain"
                                               />
@@ -60,7 +61,7 @@ export default class ReviewWithPhotoScreen extends React.Component{
               keyExtractor={(item, index) => index.toString()}
               sliderHeight={500}
               sliderWidth={500}
-              itemWidth={500 * 0.8}
+              itemWidth={500}
         />
       </View>
     )

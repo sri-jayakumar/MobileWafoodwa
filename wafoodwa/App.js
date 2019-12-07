@@ -30,6 +30,7 @@ export default class App extends React.Component {
     return <MyNavigator />;
   }
 }
+console.disableYellowBox = true
 
 class HomePage extends React.Component {
   static navigationOptions = {

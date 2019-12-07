@@ -36,9 +36,10 @@ export default class App extends React.Component{
           </Text>
           <Image style={styles.logo} source={{uri: this.state.image}} />
           <Rating
+              style={{padding: 10}}
               type="custom"
               fractions={1}
-              showRating
+              // showRating
               imageSize={30}
               startingValue={parseFloat(this.state.rating)}
               readonly
